@@ -29,9 +29,8 @@ const MenuToggle = styled.button`
   position: absolute;
   right: 24px;
   top: 24px;
-  background: transparent;
   border: 0;
-  color: white;
+  color: black;
   z-index: 5;
   height: 40px;
   width: 40px;
