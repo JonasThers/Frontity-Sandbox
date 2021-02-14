@@ -1,50 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect, styled } from "frontity";
 import Link from "../link";
 import FeaturedMedia from "../featured-media";
 
-/**
- * Item Component
- *
- * It renders the preview of a blog post. Each blog post contains
- * - Title: clickable title of the post
- * - Author: name of author and published date
- * - FeaturedMedia: the featured image/video of the post
- */
 const Item = ({ state, item }) => {
   const author = state.source.author[item.author];
   const date = new Date(item.date);
 
+  const [leftPadding, setLeftPadding] = useState("0px");
+
   return (
-    <article style={{backgroundImage: `url(${item.jetpack_featured_media_url})`}}>
+    <Article
+      onMouseOver={() => setLeftPadding("3em")}
+      onMouseLeave={() => setLeftPadding("0px")}
+    >
       <Link link={item.link}>
-        <Title dangerouslySetInnerHTML={{ __html: item.title.rendered }} />
-
-      <div>
-        {/* If the post has an author, we render a clickable author text. */}
-        {author && (
-          <AuthorName>
-            By <b>{author.name}</b>
-          </AuthorName>
-          
-        )}
-        <PublishDate>
-          {" "}
-          on <b>{date.toDateString()}</b>
-        </PublishDate>
-      </div>
-
-      {/* If the post has an excerpt (short summary text), we render it */}
-      {item.excerpt && (
-        <Excerpt dangerouslySetInnerHTML={{ __html: item.excerpt.rendered }} />
-      )}
+        <Content style={{ left: leftPadding }}>
+          {state.theme.featured.showOnList && (
+            <FeaturedMedia id={item.featured_media} />
+          )}
+          <ItemInfo>
+            <Title dangerouslySetInnerHTML={{ __html: item.title.rendered }} />
+            {author && (
+              <AuthorName>
+                By <b>{author.name}</b>
+              </AuthorName>
+            )}
+            <PublishDate>
+              {" "}
+              on <b>{date.toDateString()}</b>
+            </PublishDate>
+          </ItemInfo>
+        </Content>
       </Link>
-    </article>
+    </Article>
   );
 };
 
-// Connect the Item to gain access to `state` as a prop
 export default connect(Item);
+
+const Article = styled.div`
+  background: hotpink;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-top: 1.5em;
+`;
 
 const Title = styled.h1`
   font-size: 2rem;
@@ -69,7 +69,25 @@ const PublishDate = styled.span`
   font-size: 0.9em;
 `;
 
-const Excerpt = styled.div`
-  line-height: 1.6em;
-  color: rgba(12, 17, 43, 0.8);
+const Content = styled.div`
+  display: flex;
+  position: relative;
+  transition: 0.5s;
+  margin-bottom: -0.1px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const ItemInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: white;
+  width: 40%;
+  padding-left: 1em;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding-left: 0;
+  }
 `;
