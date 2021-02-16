@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { connect, styled } from "frontity";
 import Link from "../link";
 import FeaturedMedia from "../featured-media";
+import Moment from 'react-moment';
 
 const Item = ({ state, item }) => {
   const author = state.source.author[item.author];
-  const date = new Date(item.date);
+
 
   const [leftPadding, setLeftPadding] = useState("0px");
 
@@ -27,8 +28,9 @@ const Item = ({ state, item }) => {
               </AuthorName>
             )}
             <PublishDate>
-              {" "}
-              on <b>{date.toDateString()}</b>
+            <Moment format="DD.MM.YYYY">
+                {item.date}
+              </Moment>
             </PublishDate>
           </ItemInfo>
         </Content>

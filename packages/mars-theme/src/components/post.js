@@ -3,6 +3,7 @@ import { connect, styled } from "frontity";
 import Link from "./link";
 import List from "./list";
 import FeaturedMedia from "./featured-media";
+import Moment from 'react-moment';
 
 const Post = ({ state, actions, libraries }) => {
   // Get information about the current URL.
@@ -44,8 +45,9 @@ const Post = ({ state, actions, libraries }) => {
               </StyledLink>
             )}
             <DateWrapper>
-              {" "}
-              on <b>{date.toDateString()}</b>
+              <Moment format="DD.MM.YYYY">
+                {post.date}
+              </Moment>
             </DateWrapper>
           </div>
         )}
@@ -135,9 +137,10 @@ const Content = styled.div`
 
   blockquote {
     margin: 16px 0;
-    background-color: rgba(0, 0, 0, 0.1);
-    border-left: 4px solid rgba(12, 17, 43);
+    background-color: #f9f9f9;
+    border-left: 1px solid rgba(12, 17, 43);
     padding: 4px 16px;
+    font-style: italic;
   }
 
   a {
