@@ -40,7 +40,7 @@ const Item = ({ state, item }) => {
 export default connect(Item);
 
 const Article = styled.div`
-  background: hotpink;
+  background: #f9f9f9;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   margin-top: 1.5em;
@@ -84,10 +84,11 @@ const ItemInfo = styled.div`
   display: flex;
   flex-direction: column;
   background: white;
-  width: 40%;
+  width: 30%;
   padding-left: 1em;
   @media (max-width: 768px) {
     width: 100%;
     padding-left: 0;
+    padding-bottom: 1em;
   }
 `;

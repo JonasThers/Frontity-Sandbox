@@ -34,8 +34,11 @@ const FeaturedMedia = ({ state, id }) => {
 export default connect(FeaturedMedia);
 
 const Container = styled.div`
-  margin-top: 16px;
   height: 300px;
+  width: 70%;
+  @media (max-width: 1025px) {
+    width: 100%;
+  }
 `;
 
 const StyledImage = styled(Image)`
