@@ -28,7 +28,7 @@ const Item = ({ state, item }) => {
               </AuthorName>
             )}
             <PublishDate>
-            <Moment format="DD.MM.YYYY">
+              <Moment format="DD.MM.YYYY">
                 {item.date}
               </Moment>
             </PublishDate>

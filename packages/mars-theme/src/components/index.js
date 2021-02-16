@@ -65,7 +65,7 @@ const globalStyles = css`
 const HeadContainer = styled.div`
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
   background-color: white;
 `;
 
