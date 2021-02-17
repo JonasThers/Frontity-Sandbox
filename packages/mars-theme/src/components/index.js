@@ -23,6 +23,8 @@ const Theme = ({ state }) => {
       <Head>
         <meta name="description" content={state.frontity.description} />
         <html lang="en" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet" />
       </Head>
 
       {/* Add some global styles for the whole site, like body or a's. 
@@ -53,6 +55,7 @@ export default connect(Theme);
 const globalStyles = css`
   body {
     margin: 0;
+    font-family: 'Montserrat', sans-serif
     
   }
   a,

@@ -52,6 +52,7 @@ const NavItem = styled.div`
   font-size: 0.9em;
   box-sizing: border-box;
   flex-shrink: 0;
+  font-weight: bold;
 
   & > a {
     display: inline-block;
