@@ -38,11 +38,13 @@ const MenuOverlay = styled.div`
 
 const MenuContent = styled.div`
   z-index: 3;
+  margin: 0 auto;
 `;
 
 const MenuLink = styled(Link)`
-  width: 100%;
-  display: inline-block;
+  width: auto;
+  display: flex;
+  justify-content: center;
   outline: 0;
   font-size: 20px;
   text-align: center;
@@ -54,9 +56,8 @@ const MenuLink = styled(Link)`
   }
   /* styles for active link */
   &[aria-current="page"] {
-    color: yellow;
     font-weight: bold;
-    /* border-bottom: 4px solid yellow; */
+    border-bottom: 1px solid black;
   }
 `;
 
