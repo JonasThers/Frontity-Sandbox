@@ -88,6 +88,7 @@ const ItemInfo = styled.div`
   background: white;
   width: 30%;
   padding-left: 1em;
+  font-weight: bold;
   @media (max-width: 768px) {
     width: 100%;
     padding-left: 0;

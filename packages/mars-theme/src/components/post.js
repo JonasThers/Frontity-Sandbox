@@ -78,6 +78,7 @@ const Container = styled.div`
 const PostInfo = styled.div`
   display: flex;
   flex-direction: column;
+  font-weight: bold;
 `;
 
 const Title = styled.h1`
@@ -156,7 +157,7 @@ const Content = styled.div`
   }
 
   a {
-    color: rgb(31, 56, 197);
+    color: black;
     text-decoration: underline;
   }
 
