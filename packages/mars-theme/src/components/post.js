@@ -36,11 +36,11 @@ const Post = ({ state, actions, libraries }) => {
 
         {/* Only display author and date on posts */}
         {data.isPost && (
-          <div>
+          <PostInfo>
             {author && (
               <StyledLink link={author.link}>
                 <Author>
-                  By <b>{author.name}</b>
+                  By {author.name}
                 </Author>
               </StyledLink>
             )}
@@ -49,7 +49,7 @@ const Post = ({ state, actions, libraries }) => {
                 {post.date}
               </Moment>
             </DateWrapper>
-          </div>
+          </PostInfo>
         )}
       </div>
 
@@ -75,6 +75,11 @@ const Container = styled.div`
   padding: 24px;
 `;
 
+const PostInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const Title = styled.h1`
   margin: 0;
   margin-top: 24px;
@@ -83,19 +88,23 @@ const Title = styled.h1`
 `;
 
 const StyledLink = styled(Link)`
-  padding: 15px 0;
+  padding: 0;
 `;
 
 const Author = styled.p`
   color: rgba(12, 17, 43, 0.9);
   font-size: 0.9em;
   display: inline;
+  margin-top: -10px;
 `;
 
 const DateWrapper = styled.p`
   color: rgba(12, 17, 43, 0.9);
   font-size: 0.9em;
   display: inline;
+  padding: 0;
+  margin-top: 5px;
+  margin-bottom: 0;
 `;
 
 /**
@@ -105,6 +114,9 @@ const DateWrapper = styled.p`
 const Content = styled.div`
   color: rgba(12, 17, 43, 0.8);
   word-break: break-word;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-top: 1em;
 
   * {
     max-width: 100%;
