@@ -3,11 +3,69 @@ import { connect, styled } from "frontity";
 import Link from "../link";
 import FeaturedMedia from "../featured-media";
 import Moment from 'react-moment';
+import { ThemeContext } from "../theme-context"
 
 const Item = ({ state, item }) => {
   const author = state.source.author[item.author];
 
   const [leftPadding, setLeftPadding] = useState("0px");
+
+  const { darkTheme, setDarkTheme } = useContext(ThemeContext);
+
+  const Article = styled.div`
+  background: ${darkTheme ? 'white' : '#282828'};
+  border-top: ${darkTheme ? '1px solid white' : '1px solid black'};
+  border-bottom: ${darkTheme ? '1px solid white' : '1px solid black'};
+  margin-top: 1.5em;
+`;
+
+  const Title = styled.h1`
+  font-size: 2rem;
+  color: ${darkTheme ? 'white' : 'black'};
+  margin: 0;
+  padding-top: 24px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+`;
+
+  const AuthorName = styled.span`
+  color: ${darkTheme ? 'white' : 'black'};
+  font-size: 0.9em;
+`;
+
+  const StyledLink = styled(Link)`
+  padding: 15px 0;
+`;
+
+  const PublishDate = styled.span`
+  color: ${darkTheme ? 'white' : 'black'};
+  font-size: 0.9em;
+`;
+
+  const Content = styled.div`
+  display: flex;
+  position: relative;
+  transition: 0.5s !important;
+  margin-bottom: -0.1px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+  const ItemInfo = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: ${darkTheme ? '#282828' : 'white'};
+  width: 30%;
+  padding-left: 1em;
+  font-weight: bold;
+  @media (max-width: 768px) {
+    width: 100%;
+    padding-left: 0;
+    padding-bottom: 1em;
+  }
+`;
 
   return (
     <Article
@@ -39,58 +97,3 @@ const Item = ({ state, item }) => {
 };
 
 export default connect(Item);
-
-const Article = styled.div`
-  background: #f9f9f9;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
-  margin-top: 1.5em;
-`;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  color: rgba(12, 17, 43);
-  margin: 0;
-  padding-top: 24px;
-  padding-bottom: 8px;
-  box-sizing: border-box;
-`;
-
-const AuthorName = styled.span`
-  color: rgba(12, 17, 43, 0.9);
-  font-size: 0.9em;
-`;
-
-const StyledLink = styled(Link)`
-  padding: 15px 0;
-`;
-
-const PublishDate = styled.span`
-  color: rgba(12, 17, 43, 0.9);
-  font-size: 0.9em;
-`;
-
-const Content = styled.div`
-  display: flex;
-  position: relative;
-  transition: 0.5s;
-  margin-bottom: -0.1px;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
-
-const ItemInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  background: white;
-  width: 30%;
-  padding-left: 1em;
-  font-weight: bold;
-  @media (max-width: 768px) {
-    width: 100%;
-    padding-left: 0;
-    padding-bottom: 1em;
-  }
-`;
