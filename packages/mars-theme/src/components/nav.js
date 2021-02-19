@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { connect, styled } from "frontity";
 import Link from "./link";
+import { ThemeContext } from "./theme-context";
 
 /**
  * Navigation Component
@@ -8,10 +9,14 @@ import Link from "./link";
  * It renders the navigation links
  */
 const Nav = ({ state }) => (
+  
   <NavContainer>
     {state.theme.menu.map(([name, link]) => {
       // Check if the link matched the current page url
       const isCurrentPage = state.router.link === link;
+
+      const { darkTheme, setDarkTheme } = useContext(ThemeContext);
+      
       return (
         <NavItem key={name}>
           {/* If link url is the current page, add `aria-current` for a11y */}

@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { connect, styled } from "frontity";
 import Link from "./link";
 import List from "./list";
 import FeaturedMedia from "./featured-media";
 import Moment from 'react-moment';
+import { ThemeContext } from "./theme-context";
 
 const Post = ({ state, actions, libraries }) => {
   // Get information about the current URL.
@@ -18,58 +19,9 @@ const Post = ({ state, actions, libraries }) => {
   // Get the html2react component.
   const Html2React = libraries.html2react.Component;
 
-  /**
-   * Once the post has loaded in the DOM, prefetch both the
-   * home posts and the list component so if the user visits
-   * the home page, everything is ready and it loads instantly.
-   */
-  useEffect(() => {
-    actions.source.fetch("/");
-    List.preload();
-  }, []);
+  const { darkTheme, setDarkTheme } = useContext(ThemeContext);
 
-  // Load the post, but only if the data is ready.
-  return data.isReady ? (
-    <Container>
-      <div>
-        <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-
-        {/* Only display author and date on posts */}
-        {data.isPost && (
-          <PostInfo>
-            {author && (
-              <StyledLink link={author.link}>
-                <Author>
-                  By {author.name}
-                </Author>
-              </StyledLink>
-            )}
-            <DateWrapper>
-              <Moment format="DD.MM.YYYY">
-                {post.date}
-              </Moment>
-            </DateWrapper>
-          </PostInfo>
-        )}
-      </div>
-
-      {/* Look at the settings to see if we should include the featured image */}
-      {state.theme.featured.showOnPost && (
-        <FeaturedMedia id={post.featured_media} />
-      )}
-
-      {/* Render the content using the Html2React component so the HTML is processed
-       by the processors we included in the libraries.html2react.processors array. */}
-      <Content>
-        <Html2React html={post.content.rendered} />
-      </Content>
-    </Container>
-  ) : null;
-};
-
-export default connect(Post);
-
-const Container = styled.div`
+  const Container = styled.div`
   width: 800px;
   margin: 0;
   padding: 24px;
@@ -85,7 +37,7 @@ const Title = styled.h1`
   margin: 0;
   margin-top: 24px;
   margin-bottom: 8px;
-  color: rgba(12, 17, 43);
+  color: ${darkTheme ? 'white' : 'black'};
 `;
 
 const StyledLink = styled(Link)`
@@ -93,14 +45,14 @@ const StyledLink = styled(Link)`
 `;
 
 const Author = styled.p`
-  color: rgba(12, 17, 43, 0.9);
+  color: ${darkTheme ? 'white' : 'black'};
   font-size: 0.9em;
   display: inline;
   margin-top: -10px;
 `;
 
 const DateWrapper = styled.p`
-  color: rgba(12, 17, 43, 0.9);
+  color: ${darkTheme ? 'white' : 'black'};
   font-size: 0.9em;
   display: inline;
   padding: 0;
@@ -113,10 +65,10 @@ const DateWrapper = styled.p`
  * selectors to style that HTML.
  */
 const Content = styled.div`
-  color: rgba(12, 17, 43, 0.8);
+  color: ${darkTheme ? 'white' : 'black'};
   word-break: break-word;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: ${darkTheme ? '1px solid white' : '1px solid black'};
+  border-bottom: ${darkTheme ? '1px solid white' : '1px solid black'};
   margin-top: 1em;
 
   * {
@@ -154,10 +106,11 @@ const Content = styled.div`
     border-left: 1px solid rgba(12, 17, 43);
     padding: 4px 16px;
     font-style: italic;
+    color: black;
   }
 
   a {
-    color: black;
+    color: ${darkTheme ? 'white' : 'black'};
     text-decoration: underline;
   }
 
@@ -236,3 +189,56 @@ const Content = styled.div`
     }
   }
 `;
+
+  
+
+  /**
+   * Once the post has loaded in the DOM, prefetch both the
+   * home posts and the list component so if the user visits
+   * the home page, everything is ready and it loads instantly.
+   */
+  useEffect(() => {
+    actions.source.fetch("/");
+    List.preload();
+  }, []);
+
+  // Load the post, but only if the data is ready.
+  return data.isReady ? (
+    <Container>
+      <div>
+        <Title dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+
+        {/* Only display author and date on posts */}
+        {data.isPost && (
+          <PostInfo>
+            {author && (
+              <StyledLink link={author.link}>
+                <Author>
+                  By {author.name}
+                </Author>
+              </StyledLink>
+            )}
+            <DateWrapper>
+              <Moment format="DD.MM.YYYY">
+                {post.date}
+              </Moment>
+            </DateWrapper>
+          </PostInfo>
+        )}
+      </div>
+
+      {/* Look at the settings to see if we should include the featured image */}
+      {state.theme.featured.showOnPost && (
+        <FeaturedMedia id={post.featured_media} />
+      )}
+
+      {/* Render the content using the Html2React component so the HTML is processed
+       by the processors we included in the libraries.html2react.processors array. */}
+      <Content>
+        <Html2React html={post.content.rendered} />
+      </Content>
+    </Container>
+  ) : null;
+};
+
+export default connect(Post);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { connect, styled } from "frontity";
 import Link from "../link";
 import FeaturedMedia from "../featured-media";
@@ -6,7 +6,6 @@ import Moment from 'react-moment';
 
 const Item = ({ state, item }) => {
   const author = state.source.author[item.author];
-
 
   const [leftPadding, setLeftPadding] = useState("0px");
 
