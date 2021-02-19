@@ -28,12 +28,12 @@ const Pagination = ({ state, actions }) => {
         </Link>
       )}
 
-      {previous && next && " "}
+      {previous && next && "  "}
 
       {/* If there's a previous page, render this link */}
       {previous && (
         <Link link={previous}>
-          <Text>Newer {"  "}<>&#5171;</></Text>
+          <Text>Newer {" "}<>&#5171;</></Text>
         </Link>
       )}
     </PaginationButtons>

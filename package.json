@@ -24,6 +24,7 @@
     "@frontity/wp-source": "^1.10.0",
     "frontity": "^1.13.0",
     "moment": "^2.29.1",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-fade-in": "^2.0.1",
     "react-google-font-loader": "^1.1.0",
     "react-moment": "^1.1.1"

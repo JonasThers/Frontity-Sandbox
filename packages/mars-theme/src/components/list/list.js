@@ -9,7 +9,7 @@ const List = ({ state }) => {
   const data = state.source.get(state.router.link);
 
   return (
-    <Container>
+    <Container >
       <FadeIn>
         {/* If the list is a taxonomy, we render a title. */}
         {data.isTaxonomy && (
