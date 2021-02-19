@@ -4,6 +4,7 @@ import { ThemeContext } from "./theme-context";
 
 const ThemeToggle = () => {
     const { darkTheme, setDarkTheme } = useContext(ThemeContext);
+    console.log('toggle');
 
     const ThemeToggleButton = styled.button`
         border: ${darkTheme ? '1px solid white' : '1px solid black'};

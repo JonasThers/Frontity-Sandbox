@@ -22,17 +22,25 @@ const Theme = ({ state }) => {
   const themeValue = useMemo(() => ({ darkTheme, setDarkTheme }));
 
   const globalStyles = css`
+
   body {
     background: ${darkTheme ? '#282828' : 'white'};
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     color: ${darkTheme ? 'white' : 'black'};
-    
   }
   a,
   a:visited {
     color: inherit;
     text-decoration: none;
+  }
+
+  .css-3gpvvh-NavItem > a {
+    color: ${darkTheme ? 'white' : 'black'} !important;
+  }
+
+  .css-3gpvvh-NavItem > a[aria-current="page"] {
+    border-bottom: ${darkTheme ? '1px solid white' : '1px solid black'} !important;
   }
 `;
 

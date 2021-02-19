@@ -19,13 +19,13 @@ const MenuModal = ({ state }) => {
   left: 0;
 `;
 
-const MenuContent = styled.div`
+  const MenuContent = styled.div`
   z-index: 3;
   margin: 0 auto;
   color: ${darkTheme ? 'white' : 'black'};
 `;
 
-const MenuLink = styled(Link)`
+  const MenuLink = styled(Link)`
   width: auto;
   display: flex;
   justify-content: center;
