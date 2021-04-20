@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { connect, styled } from "frontity";
 import Link from "./link";
-import { ThemeContext } from "./theme-context";
 
 /**
  * Navigation Component
@@ -14,8 +13,6 @@ const Nav = ({ state }) => (
     {state.theme.menu.map(([name, link]) => {
       // Check if the link matched the current page url
       const isCurrentPage = state.router.link === link;
-
-      const { darkTheme, setDarkTheme } = useContext(ThemeContext);
       
       return (
         <NavItem key={name}>

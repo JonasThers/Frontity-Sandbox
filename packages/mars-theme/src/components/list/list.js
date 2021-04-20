@@ -1,29 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { connect, styled, decode } from "frontity";
 import Item from "./list-item";
 import Pagination from "./pagination";
 import FadeIn from 'react-fade-in';
-import { ThemeContext } from "../theme-context";
 
 const List = ({ state }) => {
   // Get the data of the current list.
   const data = state.source.get(state.router.link);
-
-  const { darkTheme, setDarkTheme } = useContext(ThemeContext);
-
-  const Container = styled.section`
-  width: 800px;
-  margin: 0;
-  padding: 24px;
-  list-style: none;
-`;
-
-const Header = styled.h3`
-  font-weight: 300;
-  text-transform: capitalize;
-  color: ${darkTheme ? 'white' : 'black'};
-`;
-
 
   return (
     <Container >
@@ -53,5 +36,18 @@ const Header = styled.h3`
     </Container>
   );
 };
+
+const Container = styled.section`
+width: 800px;
+margin: 0;
+padding: 24px;
+list-style: none;
+`;
+
+const Header = styled.h3`
+font-weight: 300;
+text-transform: capitalize;
+color: black;
+`;
 
 export default connect(List);
