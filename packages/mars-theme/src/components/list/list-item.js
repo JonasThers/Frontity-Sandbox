@@ -112,6 +112,7 @@ display: flex;
 position: relative;
 transition: 0.5s !important;
 margin-bottom: -0.1px;
+width: 100%;
 
 @media (max-width: 768px) {
   flex-direction: column;
